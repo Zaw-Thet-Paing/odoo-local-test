@@ -64,6 +64,20 @@ docker compose down -v
 ```
 
 Put custom Odoo modules in `addons/`, then restart Odoo and update the Apps list.
+The Odoo configuration and custom modules are copied into the image during the
+build, so changes to either are included automatically on the next deployment.
+
+## Coolify deployment
+
+Create a Docker Compose application from this repository and select
+`compose.yaml`. Configure the values from `.env.example` in Coolify's
+Environment Variables page, using a strong `POSTGRES_PASSWORD`.
+
+Enable automatic deployment for the production branch in Coolify. When the Git
+provider webhook is connected, each push rebuilds the custom Odoo image, runs
+the module initialization service, and then starts Odoo. Repository bind mounts
+are intentionally not used, so **Preserve Repository During Deployment** is not
+required.
 
 If ports `8079` or `8081` are already in use, change `ODOO_PORT` or
 `ADMINER_PORT` in `.env`.

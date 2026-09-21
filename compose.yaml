@@ -1,5 +1,11 @@
 name: odoo-local
 
+x-odoo-image: &odoo-image
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: odoo-local:18.0
+
 services:
   db:
     image: postgres:16
@@ -21,7 +27,7 @@ services:
       - odoo-network
 
   odoo-init:
-    image: odoo:18.0
+    <<: *odoo-image
     restart: "no"
     depends_on:
       db:
@@ -39,13 +45,11 @@ services:
       - --without-demo=all
     volumes:
       - odoo-data:/var/lib/odoo
-      - ./addons:/mnt/extra-addons
-      - ./config/odoo.conf:/etc/odoo/odoo.conf:ro
     networks:
       - odoo-network
 
   odoo:
-    image: odoo:18.0
+    <<: *odoo-image
     restart: unless-stopped
     depends_on:
       db:
@@ -62,8 +66,6 @@ services:
     command: ["odoo", "--database=${ODOO_DB:-odoo-local}"]
     volumes:
       - odoo-data:/var/lib/odoo
-      - ./addons:/mnt/extra-addons
-      - ./config/odoo.conf:/etc/odoo/odoo.conf:ro
     networks:
       - odoo-network
 
