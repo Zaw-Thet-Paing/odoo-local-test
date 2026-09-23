@@ -22,6 +22,10 @@ The database is created automatically. The sole local login is:
 
 These intentionally simple credentials are for local development only.
 
+The persistent volumes are versioned for Odoo 19. Odoo databases cannot be
+upgraded between major versions by attaching an older database volume to a
+newer Odoo image; existing Odoo 18 volumes require a proper database migration.
+
 ### Adminer (local dev only)
 
 Adminer is excluded from production by default. To use it locally:
