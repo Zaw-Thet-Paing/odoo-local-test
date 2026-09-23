@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="group_pos_staff_restricted" model="res.groups">
-        <field name="name">Restricted POS Staff</field>
-        <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="comment">POS selling access with a read-only backend and POS-only menu.</field>
-    </record>
-</odoo>

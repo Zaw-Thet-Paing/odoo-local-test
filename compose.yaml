@@ -4,7 +4,7 @@ x-odoo-image: &odoo-image
   build:
     context: .
     dockerfile: Dockerfile
-  image: odoo-local:18.0
+  image: odoo-local:19.0
 
 services:
   db:
@@ -40,9 +40,9 @@ services:
     command:
       - odoo
       - --database=${ODOO_DB:-odoo-local}
-      - --init=pos_staff_security
+      - --init=sale_management,account,stock,purchase,point_of_sale,pos_staff_security
       - --stop-after-init
-      - --without-demo=all
+      - --without-demo=true
     volumes:
       - odoo-data:/var/lib/odoo
     networks:

@@ -1,6 +1,6 @@
 # Odoo local development with Docker
 
-This stack runs Odoo 18, PostgreSQL 16, and Adminer (a PostgreSQL web GUI).
+This stack runs Odoo 19, PostgreSQL 16, and Adminer (a PostgreSQL web GUI).
 
 ## Start
 
@@ -11,15 +11,14 @@ docker compose up -d
 ```
 
 On every startup, the one-shot `odoo-init` service first creates/updates the
-database and installs the local security module. Open:
+database and ensures Sales, Invoicing, Inventory, Purchase, Point of Sale, and
+the local administrator bootstrap module are installed. Open:
 
 - Odoo: http://localhost:8079
 
-The database is created automatically. Default local logins are:
+The database is created automatically. The sole local login is:
 
 - `admin@gmail.com` / `password` — full administrator permissions
-- `staff@gmail.com` / `password` — POS selling, POS-only menu, and read-only
-  access to all other backend models
 
 These intentionally simple credentials are for local development only.
 
