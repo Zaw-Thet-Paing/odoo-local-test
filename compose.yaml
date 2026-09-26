@@ -16,7 +16,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - postgres-data-v19:/var/lib/postgresql/data/pgdata
+      - postgres-data-v20:/var/lib/postgresql/data/pgdata
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-odoo} -d ${POSTGRES_DB:-postgres}"]
       interval: 5s
@@ -44,7 +44,7 @@ services:
       - --stop-after-init
       - --without-demo=true
     volumes:
-      - odoo-data-v19:/var/lib/odoo
+      - odoo-data-v20:/var/lib/odoo
     networks:
       - odoo-network
 
@@ -65,7 +65,7 @@ services:
       PASSWORD: ${POSTGRES_PASSWORD:-odoo}
     command: ["odoo", "--database=${ODOO_DB:-odoo-local}"]
     volumes:
-      - odoo-data-v19:/var/lib/odoo
+      - odoo-data-v20:/var/lib/odoo
     networks:
       - odoo-network
 
@@ -84,8 +84,8 @@ services:
       - odoo-network
 
 volumes:
-  postgres-data-v19:
-  odoo-data-v19:
+  postgres-data-v20:
+  odoo-data-v20:
 
 networks:
   odoo-network:
